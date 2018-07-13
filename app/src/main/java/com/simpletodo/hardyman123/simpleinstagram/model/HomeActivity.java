@@ -22,6 +22,8 @@ import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+import com.simpletodo.hardyman123.simpleinstagram.LoginActivity;
+import com.simpletodo.hardyman123.simpleinstagram.PostActivity;
 import com.simpletodo.hardyman123.simpleinstagram.R;
 
 import java.io.File;
@@ -37,6 +39,8 @@ public class HomeActivity extends AppCompatActivity {
     public String photoFileName = "photo.jpg";
     File photoFile;
     private Button pictureButton;
+    private Button logoutButton;
+    private Button makePostButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,8 @@ public class HomeActivity extends AppCompatActivity {
         createButton = findViewById(R.id.bCreate);
         refreshButton = findViewById(R.id.bRefresh);
         pictureButton = findViewById(R.id.bPicture);
+        logoutButton = findViewById(R.id.bLogOut);
+        makePostButton = findViewById(R.id.bMakePost);
 
 
         createButton.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +96,23 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("Logout button is working");
+                logout();
+                System.out.println(ParseUser.getCurrentUser());
+            }
+        });
+
+        makePostButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                makePost();
+                System.out.println("Post button works");
+            }
+        });
 
 
     }
@@ -235,7 +258,27 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
+        public void readyUp(){
+            // Allow one to go back to login screen
+            this.finish();
+        }
 
-        
+
+        private void logout(){
+            ParseUser.logOut();
+            ParseUser currentUser = ParseUser.getCurrentUser(); // this should be null now
+
+            final Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+
+        }
+
+
+        public void makePost(){
+            final Intent intent = new Intent(HomeActivity.this, PostActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
     }

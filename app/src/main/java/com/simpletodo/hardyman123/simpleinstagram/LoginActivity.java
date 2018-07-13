@@ -18,6 +18,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText usernameInput;
     private EditText passwordInput;
     private Button loginBtn;
+    private Button signupBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         usernameInput = findViewById(R.id.etCreateUser);
         passwordInput = findViewById(R.id.etPassword);
         loginBtn = findViewById(R.id.bLogin);
+        signupBtn = findViewById(R.id.bSignUp);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,7 +40,23 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        signupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                signUp();
+            }
+        });
+
     }
+
+
+    private void signUp(){
+        final Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+
+        startActivity(intent);
+    }
+
+
 
     private void login(String username, String password){
         // TODO - do later
