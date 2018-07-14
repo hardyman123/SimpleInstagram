@@ -57,15 +57,25 @@ public class PostActivity extends AppCompatActivity {
                 final String description = descriptionInput.getText().toString();
                 final ParseUser user = ParseUser.getCurrentUser();
 
-                final File file = getPhotoFileUri(photoFileName);
+               // final File file = getPhotoFileUri(photoFileName);
                 // this is where we ask the user to select of a file or take a picture with the camera
 
-                final ParseFile parseFile = new ParseFile(file);
+                System.out.println("1");
+                System.out.println(photoFile);
+                System.out.println("2");
+
+                if(photoFile == null || description.equals("") ){
+                    Toast.makeText(PostActivity.super.getBaseContext(), "Needs a picture and description", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                final ParseFile parseFile = new ParseFile(photoFile);
                 parseFile.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {
                         // pass in the picture file
                         createPost(description, parseFile, user);
+                        finishUp();
                     }
                 });
 
@@ -133,6 +143,7 @@ public class PostActivity extends AppCompatActivity {
             public void done(ParseException e) {
                 if (e == null) {
                     Log.d("PostActivity", "Create Post Success!");
+                    Toast.makeText(PostActivity.super.getBaseContext(), "Post Uploaded!", Toast.LENGTH_SHORT).show();
                 } else {
                     e.printStackTrace();
                 }
@@ -164,43 +175,10 @@ public class PostActivity extends AppCompatActivity {
             }
         }
 
-// @Override
-  /*  protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE){
-            if(resultCode == RESULT_OK) {
-                // by this point we have the camera photo on disk
-                Bitmap takenImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
-                // RESIZE BITMAP, see section below
-               /* Uri takenPhotoUri = Uri.fromFile(photoFile);
-                // by this point we have the camera photo on disk
-                Bitmap rawTakenImage = BitmapFactory.decodeFile(takenPhotoUri.getPath());
-                // See BitmapScaler.java: https://gist.github.com/nesquena/3885707fd3773c09f1bb
-                Bitmap resizedBitmap = scaleToFitWidth(rawTakenImage, 50);
-                // Configue byte output stream
-                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                // Compress the image further
-                resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 40, bytes);
-                // Create a new file for the resized bitmap ('getPhotoFileUri' defined above)
-                Uri resizedUri = getPhotoFileUri(photoFileName + "_resized");   <-- how to do with Uri.fromFile(photoFile)
-                File resizedFile = new File(resizedUri.getPath());
-                resizedFile.createNewFile();
-                FileOutputStream fos = new FileOutputStream(resizedFile);;
-                // Write the bytes of the bitmap to file
-                fos.write(bytes.toByteArray());
-                fos.close();
+    }
 
-
-
-                // Load the taken image into a preview
-                ImageView ivPreview = (ImageView) findViewById(R.id.ivPreview);
-                ivPreview.setImageBitmap(takenImage);
-            } else {
-                Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
-            }
-        }
-    } */
-
-
+    public void finishUp(){
+        this.finish();
     }
 
 }

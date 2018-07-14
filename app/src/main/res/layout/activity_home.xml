@@ -30,37 +30,6 @@
 
 
 
-    <EditText
-        android:id="@+id/etDescription"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="Enter a description"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/ivPreview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tbHome"/>
-
-    <Button
-        android:id="@+id/bCreate"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-
-        android:layout_marginTop="8dp"
-        android:capitalize="none"
-        android:text="Create"
-
-        app:layout_constraintBottom_toTopOf="@id/bRefresh"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivPreview" />
 
     <Button
         android:id="@+id/bRefresh"
@@ -74,34 +43,10 @@
         app:layout_constraintBottom_toTopOf="@+id/bMakePost"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bPicture" />
+        app:layout_constraintTop_toBottomOf="@+id/bFeed" />
 
-    <Button
-        android:id="@+id/bPicture"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="Take Picture"
-        app:layout_constraintBottom_toTopOf="@+id/bRefresh"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bCreate" />
 
-    <ImageView
-        android:id="@+id/ivPreview"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/bCreate"
-        app:layout_constraintTop_toBottomOf="@+id/etDescription"
-        app:srcCompat="@color/colorPrimary"
-        tools:layout_editor_absoluteY="139dp" />
+
 
     <Button
         android:id="@+id/bMakePost"
@@ -116,5 +61,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bRefresh" />
+
+    <Button
+        android:id="@+id/bFeed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Go to Feed"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/tbHome"
+        app:layout_constraintBottom_toTopOf="@+id/bRefresh"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="407dp" />
 
 </android.support.constraint.ConstraintLayout>

@@ -23,6 +23,14 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if(ParseUser.getCurrentUser() != null){
+            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
         setContentView(R.layout.activity_login);
 
 
@@ -30,6 +38,10 @@ public class LoginActivity extends AppCompatActivity {
         passwordInput = findViewById(R.id.etPassword);
         loginBtn = findViewById(R.id.bLogin);
         signupBtn = findViewById(R.id.bSignUp);
+
+
+
+
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,5 +89,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
 
 }
